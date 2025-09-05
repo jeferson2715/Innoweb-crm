@@ -1,0 +1,277 @@
+/* ===== Tokens del tema ===== */
+:root {
+    --bg: #020230;
+    --card: rgba(255, 255, 255, .06);
+    --border: rgba(255, 255, 255, .12);
+    --text: #E9ECFF;
+    --muted: #B8BEFF;
+    --accent: #3e48dc;
+    /* secundario */
+    --cta: #f56601;
+    /* primario (agregar/guardar) */
+    --shadow: 0 12px 30px rgba(0, 0, 0, .35);
+}
+
+/* ===== Layout global y centrado ===== */
+* {
+    box-sizing: border-box
+}
+
+body {
+    margin: 0;
+    min-height: 100svh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* centrado vertical */
+    align-items: center;
+    /* centrado horizontal */
+    background: var(--bg);
+    color: var(--text);
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, Ubuntu, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif;
+    padding: 48px 24px;
+}
+
+.wrap {
+    width: min(1100px, 96%);
+}
+
+h1 {
+    margin: 0 0 22px;
+    text-align: center;
+    letter-spacing: .08em;
+    font-weight: 800;
+}
+
+/* ===== Tarjeta del formulario ===== */
+.form-card {
+    width: 100%;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 22px;
+    box-shadow: var(--shadow);
+    backdrop-filter: blur(6px);
+}
+
+/* ===== Grid responsivo con áreas ===== */
+.form-grid {
+    display: grid;
+    gap: 14px;
+}
+
+/* Mobile: 1 por fila */
+@media (max-width: 767px) {
+    .form-grid {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+            "id"
+            "estado"
+            "empresa"
+            "nombre"
+            "email"
+            "telefono"
+            "ciudad"
+            "tipo"
+            "estadop"
+            "resp";
+    }
+}
+
+/* Desktop: 12 columnas */
+@media (min-width: 768px) {
+    .form-grid {
+        grid-template-columns: repeat(12, minmax(0, 1fr));
+        grid-template-areas:
+            /* Fila 1: ID (3)  Estado (3)  Empresa (6) */
+            "id id id estado estado estado empresa empresa empresa empresa empresa empresa"
+            /* Fila 2: Nombre (6)  Email (6) */
+            "nombre nombre nombre nombre nombre nombre email email email email email email"
+            /* Fila 3: Teléfono (6)  Ciudad (6) */
+            "telefono telefono telefono telefono telefono telefono ciudad ciudad ciudad ciudad ciudad ciudad"
+            /* Fila 4: Tipo (4)  Estado proyecto (4)  Responsable (4) */
+            "tipo tipo tipo tipo estadop estadop estadop estadop resp resp resp resp";
+    }
+}
+
+/* Mapea cada bloque a su área */
+.f-id {
+    grid-area: id;
+}
+
+.f-estado {
+    grid-area: estado;
+}
+
+.f-empresa {
+    grid-area: empresa;
+}
+
+.f-nombre {
+    grid-area: nombre;
+}
+
+.f-email {
+    grid-area: email;
+}
+
+.f-telefono {
+    grid-area: telefono;
+}
+
+.f-ciudad {
+    grid-area: ciudad;
+}
+
+.f-tipo {
+    grid-area: tipo;
+}
+
+.f-estadop {
+    grid-area: estadop;
+}
+
+.f-resp {
+    grid-area: resp;
+}
+
+/* Inputs select/inputs ocupan todo el ancho de su celda */
+.field {
+    min-width: 0;
+}
+
+.field label {
+    display: block;
+    color: var(--muted);
+    font-size: .9rem;
+    margin: 2px 0 6px;
+}
+
+.field input,
+.field select {
+    width: 100%;
+    height: 44px;
+    padding: 0 12px;
+    color: var(--text);
+    background: rgba(255, 255, 255, .07);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    outline: none;
+    transition: border-color .15s, box-shadow .15s, background .15s;
+}
+
+.field input:focus,
+.field select:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(62, 72, 220, .25);
+    background: rgba(255, 255, 255, .10);
+}
+
+/* ===== Botonera ===== */
+.actions {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 12px;
+}
+
+.btn {
+    appearance: none;
+    border: 0;
+    cursor: pointer;
+    padding: 10px 16px;
+    border-radius: 10px;
+    font-weight: 700;
+    letter-spacing: .3px;
+    box-shadow: var(--shadow);
+    transition: transform .06s ease, filter .2s ease;
+}
+
+.btn:active {
+    transform: translateY(1px);
+}
+
+.btn--primary, .btn-actualizar {
+    background: var(--cta);
+    color: #fff;
+}
+
+.btn--primary:hover {
+    filter: brightness(1.05);
+}
+
+button.btn.btn-eliminar {
+    margin-top: 5px;
+
+}
+
+.btn--secondary  {
+    background: #0b40d2;
+    color: #ffffff;
+}
+
+.btn--secondary:hover {
+    filter: brightness(1.08);
+}
+
+
+
+.btn--ghost {
+    background: #fff;
+    color: #111;
+}
+/* ===== (Opcional) Tabla y flashes si los usas más abajo ===== */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 24px 0;
+    background: #fff;
+    color: #111;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+}
+
+thead {
+    background: var(--cta);
+    color: #fff;
+}
+
+th,
+td {
+    padding: 14px;
+    text-align: center;
+    border-bottom: 1px solid #eee;
+}
+
+tr:hover {
+    background: #ffefdf;
+}
+
+.flash {
+    display: none;
+    margin: 12px 0;
+    padding: 10px;
+    border-radius: 10px;
+    font-weight: 600;
+}
+
+.flash--ok {
+    display: block;
+    background: #e6ffed;
+    border: 1px solid #38a169;
+    color: #22543d;
+}
+
+.flash--error {
+    display: block;
+    background: #ffecec;
+    border: 1px solid #e53e3e;
+    color: #742a2a;
+}
+
+
+/* Color del texto del desplegable*/
+option {
+    color: black;
+}

@@ -1,247 +1,96 @@
-<html>
-    <head>
-        <title>listarPersonas</title>
-        <style>
-            body {
-                background-size: cover; /* Ajusta la imagen para cubrir toda la pantalla */
-                background-repeat: no-repeat; /* Evita que se repita */
-                background-position: center center; /* Centra la imagen */
-                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-                margin: 0;
-                padding: 40px;
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-            }
-            h1  {color: #000000; /* Azul oscuro elegante */
-                margin-bottom: 30px; /* Espaciado inferior */
-            }
-            table {
-                width: 80%; /* Ocupa el 80% del ancho */
-                border-collapse: collapse; /* Elimina espacio entre bordes de celdas */
-                background-color: white; /* Fondo blanco para mejor contraste */
-                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Sombra sutil para efecto de tarjeta */
-                border-radius: 8px; /* Bordes redondeados */
-                overflow: hidden; /* Oculta esquinas redondeadas del contenido */
-            }
+<!doctype html>
+<html lang="es">
 
-            th,td{ padding: 15px; /* Espaciado interno */
-                text-align: center; /* Centra el texto */
-                border-bottom: 1px solid #e0e0e0; /* Línea divisoria clara */
-            }
+<head>
+    <meta charset="utf-8">
+    <title>Innoweb – Formulario</title>
+    <link rel="stylesheet" href="/estilos.css">
+</head>
 
-            thead { background-color: #090909; /* Lila */
-                color: white; /* Texto blanco para contraste */
-            }
+<body>
+    <div class="wrap">
+        <h1>Registro de Clientes</h1>
 
-            tr:hover{background-color: #2c0274; /* Cambia el color de fondo al pasar el mouse */
-            }
+        <form id="personaFormulario" class="form-card">
+            <div class="form-grid">
+                <!-- Fila 1 -->
+                <div class="field f-id">
+                    <label for="id">ID</label>
+                    <input id="id" type="text" placeholder="CL-0001" />
+                </div>
 
-            @media (max-width: 768px) {table {
-                    width: 100%; /* Hace la tabla más fluida en pantallas pequeñas */
-                }
-            }
+                <div class="field f-estado">
+                    <label for="estado">Estado</label>
+                    <select id="estado">
+                        <option>Nuevo</option>
+                        <option>Antiguo</option>
+                    </select>
+                </div>
 
-        </style>   
+                <div class="field f-empresa">
+                    <label for="empresa">Empresa</label>
+                    <input id="empresa" type="text" placeholder="ACME SAS" />
+                </div>
 
-    </head>
-    <body>
+                <!-- Fila 2 -->
+                <div class="field f-nombre">
+                    <label for="nombre">Nombre</label>
+                    <input id="nombre" type="text" placeholder="Juan Pérez" />
+                </div>
 
-        <h1>Registro de personas desde la Base de Datos</h1>
-        <br>
-        <table>
-            <thead>
-               <th>Identificacion</th>
-               <th>Edad</th>
-               <th>Nombre</th>
-               <th>Acciones</th>
-               
-            </thead>
-            <tbody id="datosPersonaBD">
-            </tbody>
-            <br>
+                <div class="field f-email">
+                    <label for="email">Email</label>
+                    <input id="email" type="email" placeholder="juan@correo.com" />
+                </div>
 
-            <h2>Lista de Estudiantes</h2>
+                <!-- Fila 3 -->
+                <div class="field f-telefono">
+                    <label for="telefono">Teléfono</label>
+                    <input id="telefono" type="tel" placeholder="+57 300 000 0000" />
+                </div>
 
-        <form id="personaFormulario">
-            <label>Identificacion:</label>
-            <input type="number" id="identificacion" required>
-            
-            <label>Nombre:</label>
-            <input type="text" id="nombre" required>
-            
-            <label>Edad:</label>
-            <input type="number" id="edad" required>
-            <button type="submit">Agregar Persona</button>
-            <button onclick="guardarCambios()">Actualizar Persona</button>
+                <div class="field f-ciudad">
+                    <label for="ciudad_pais">Ciudad / País</label>
+                    <input id="ciudad_pais" type="text" placeholder="Bogotá, CO" />
+                </div>
+
+                <!-- Fila 4 -->
+                <div class="field f-tipo">
+                    <label for="tipo_proyecto">Tipo de proyecto</label>
+                    <select id="tipo_proyecto">
+                        <option>Pagina web</option>
+                        <option>LandinPage</option>
+                        <option>Programación</option>
+                        <option>Marketing</option>
+                    </select>
+                </div>
+
+                <div class="field f-estadop">
+                    <label for="estado_proyecto">Estado del proyecto</label>
+                    <select id="estado_proyecto">
+                        <option>Pendiente</option>
+                        <option>En proceso</option>
+                        <option>Entregado</option>
+                    </select>
+                </div>
+
+                <div class="field f-resp">
+                    <label for="responsable">Responsable</label>
+                    <input id="responsable" type="text" placeholder="Asesor asignado" />
+                </div>
+            </div>
+
+            <div class="actions">
+                <button type="submit" class="btn btn--ghost" id="btnAgregar">Agregar</button>
+                <button type="button" class="btn btn--primary" id="btnActualizar"
+                    style="display:none">Actualizar</button>
+                <button type="button" class="btn btn--secondary" id="btnIrDatos">Ver lista</button>
+            </div>
         </form>
-    
+    </div>
 
-        <table>
-            <thead>
-                <th>Indice</th>
-              <th>Valor</th>
-               <th>Unidad</th>
-               <th>Vigencia Desde</th>
-               <th>Vigencia Hasta</th>
-            </thead>
-            <tbody id="cuerpo-tabla2">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="/app.js" defer></script>
+</body>
 
-            </tbody>
-        </table>
-                
-        </table>
-
-        <script>
-            async function cargarPersonas() {
-                try{
-                   const respuesta = await fetch('http://127.0.0.1:5000/ListarProyectos');
-                   const datos = await respuesta.json();
-                   const cuerpoTabla = document.getElementById("cuerpo-tabla");
-                   cuerpoTabla.innerHTML = " ";
-                   let indice = 1;
-                   datos.forEach((item) => {
-                     const fila = document.createElement('tr');
-                     fila.innerHTML = `
-                          <td>${indice}</td>
-                          <td>${item.Nombre}</td>
-                          <td>${item.Edad}</td>
-                          <td>${item.Profesion}</td>
-                    `;
-                    indice= indice+1;
-                    cuerpoTabla.appendChild(fila);
-                   });
-                }catch(error){
-                    console.log("El error fue: "+error)
-                }
-            }
-
-            async function cargarPersonasDesdeBD() {
-                try{
-                   const respuesta = await fetch('http://127.0.0.1:5000/datosDeLaBase');
-                   const datos = await respuesta.json();
-                   const cuerpoTabla = document.getElementById("datosPersonaBD");
-                   cuerpoTabla.innerHTML = " ";
-                   let indice = 1;
-                   datos.forEach((item) => {
-                     const fila = document.createElement('tr');
-                     fila.innerHTML = `
-                     
-                          <td>${item.identificacion}</td>
-                          <td>${item.edad}</td>
-                          <td>${item.nombre}</td>
-                           <td><button onclick="actualizar(${item.identificacion})">Actualizar</button>
-                            <button onclick="eliminar(${item.identificacion})">Eliminar</button></td>
-                    `;
-                    indice= indice+1;
-                    cuerpoTabla.appendChild(fila);
-                   });
-                }catch(error){
-                    console.log("El error fue: "+error)
-                }
-            }
-
-            document.getElementById('personaFormulario').addEventListener('submit', 
-        async function(event) {
-            event.preventDefault();
-    
-            const persona = { persona: {
-                identificacion: document.getElementById('identificacion').value,
-                nombre: document.getElementById('nombre').value,
-                edad: document.getElementById('edad').value
-            }
-                
-            
-            };
-
-                    try {
-                const response = await fetch('http://127.0.0.1:5000/agregarPersonaBD', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(persona)
-                });
-
-                if (response.ok) {
-                   console.log("Se agrego correctamente");
-                } else {
-                    alert('Error al agregar persona');
-                }
-            } catch (error) {
-                console.error('Error al enviar datos:', error);
-            }
-        });
-
-            document.addEventListener('DOMContentLoaded',cargarPersonas);
-            document.addEventListener('DOMContentLoaded',cargarPersonasDesdeBD);
-
-
-            async function actualizar(identificacion) {
-                alert(identificacion);
-                try{
-                    const respuesta = await fetch('http://127.0.0.1:5000/buscarPersona/'+identificacion);
-                    const datos = await respuesta.json();
-                    console.log(datos[0].nombre);
-                    document.getElementById("identificacion").value = datos[0].identificacion;
-                    document.getElementById("nombre").value = datos[0].nombre;
-                    document.getElementById("edad").value = datos[0].edad;
-
-                const persona = { persona: {
-                    identificacion: document.getElementById('identificacion').value,
-                    nombre: document.getElementById('nombre').vale,
-                    edad: document.getElementById('edad').value
-                }}
-
-                }catch(error0){
-                    console.log(error);
-                }
-            }
-
-            async function eliminar(identificacion) {
-                alert(identificacion);
-
-                try {
-                    const response = await fetch('http://127.0.0.1:5000/eliminarPersona/'+identificacion,{
-                        method: 'DELETE',
-                    })
-
-                    if (response.ok) {
-                         console.log("Se elimino correctamente");
-                    } else {
-                        alert ('Error al eliminar persona');
-                    }
-                } catch (error) {
-                    console.error('Error al enviar datos;', error);
-                }
-                
-            }
-
-
-            async function guardarCambios() {
-                const id = document.getElementById('identificacion').value;
-               const persona = {
-                    identificacion: document.getElementById('identificacion').value,
-                    nombre: document.getElementById('nombre').value,
-                    edad: document.getElementById('edad').value
-                }
-
-                try {
-                const response = await fetch('http://127.0.0.1:5000/actualizarPersona/'+id, {
-                    method: 'PUT',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(persona)
-                });
-
-                if (response.ok) {
-                   console.log("Se actualizo correctamente");
-                } else {
-                    alert('Error al actualizo persona');
-                }
-            } catch (error) {
-                console.error('Error al enviar datos:', error);
-            }         
-            }
-
-        </script>
-
-    </body>
- </html>
+</html>
